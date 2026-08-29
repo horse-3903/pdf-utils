@@ -1,22 +1,16 @@
-import { useMemo, useState } from 'react'
-import { Search, FileText } from 'lucide-react'
+import { useMemo } from 'react'
+import { FileText } from 'lucide-react'
 import { TOOLS } from '../tools/registry'
 
 export default function Home({ onSelect }: { onSelect: (id: string) => void }) {
-  const [query, setQuery] = useState('')
-
   const groups = useMemo(() => {
-    const q = query.trim().toLowerCase()
-    const filtered = TOOLS.filter(
-      (t) => !q || t.name.toLowerCase().includes(q) || t.description.toLowerCase().includes(q)
-    )
     const byGroup: Record<string, typeof TOOLS> = {}
-    for (const tool of filtered) {
+    for (const tool of TOOLS) {
       byGroup[tool.group] ??= []
       byGroup[tool.group].push(tool)
     }
     return byGroup
-  }, [query])
+  }, [])
 
   return (
     <div className="mx-auto max-w-6xl px-8 py-14">
@@ -28,16 +22,6 @@ export default function Home({ onSelect }: { onSelect: (id: string) => void }) {
         <p className="mt-2 max-w-md text-neutral-500 dark:text-neutral-400">
           Every tool runs on your machine. Nothing is uploaded, nothing leaves your laptop.
         </p>
-
-        <div className="relative mt-8 w-full max-w-md">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400" size={18} />
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search tools…"
-            className="w-full rounded-xl border border-neutral-200 bg-white py-2.5 pl-10 pr-4 text-sm shadow-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100"
-          />
-        </div>
       </div>
 
       {Object.entries(groups).map(([group, tools]) => (
@@ -62,10 +46,6 @@ export default function Home({ onSelect }: { onSelect: (id: string) => void }) {
           </div>
         </div>
       ))}
-
-      {Object.keys(groups).length === 0 && (
-        <p className="text-center text-neutral-400">No tools match "{query}"</p>
-      )}
     </div>
   )
 }
