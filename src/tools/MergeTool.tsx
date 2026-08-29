@@ -28,7 +28,7 @@ export default function MergeTool({ onBack }: { onBack: () => void }) {
   return (
     <ToolShell title="Merge PDF" subtitle="Combine multiple PDFs into one document" onBack={onBack}>
       {pages.length === 0 ? (
-        <Dropzone accept="application/pdf" label="Drop PDFs here" sublabel="or click to browse — add as many as you like" onFiles={addFiles} />
+        <Dropzone accept="application/pdf" label="Drop PDFs here" sublabel="or click to browse, add as many as you like" onFiles={addFiles} />
       ) : (
         <div className="flex flex-col gap-6">
           <div className="flex items-center justify-between">

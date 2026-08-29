@@ -63,7 +63,7 @@ export default function ImagesToPdfTool({ onBack }: { onBack: () => void }) {
   return (
     <ToolShell title="Images to PDF" subtitle="Turn JPG or PNG images into a single PDF" onBack={onBack}>
       {items.length === 0 ? (
-        <Dropzone accept="image/png,image/jpeg" label="Drop images here" sublabel="PNG or JPG — add as many as you like" onFiles={addFiles} />
+        <Dropzone accept="image/png,image/jpeg" label="Drop images here" sublabel="PNG or JPG, add as many as you like" onFiles={addFiles} />
       ) : (
         <div className="flex flex-col gap-6">
           <div className="flex items-center justify-between">
