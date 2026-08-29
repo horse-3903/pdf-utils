@@ -28,7 +28,7 @@ function App() {
   const ActiveComponent = activeTool ? TOOL_COMPONENTS[activeTool] : null
 
   return (
-    <div className="h-full min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       {ActiveComponent ? (
         <ActiveComponent onBack={() => setActiveTool(null)} />
       ) : (
